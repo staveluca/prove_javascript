@@ -1,0 +1,41 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.click{
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: gainsboro;
+    padding: 10px 15px;
+    font-weight: 500;
+    margin: 20px auto;
+}
+
+p{
+    background-color: gainsboro;
+    border: 1px solid gray;
+    padding: 10px 50px;
+    margin: 5px auto;
+}
+
+.red_paragraph{
+    color: red;
+    background-color: rgb(173, 122, 122);
+    border: 1px solid red;
+}
+
+.blue_paragraph{
+    color: blue;
+    background-color: rgb(105, 105, 138);
+    border: 1px solid blue;
+}
+
+.green_paragraph{
+    color: green;
+    background-color: rgb(141, 163, 141);
+    border: 1px solid green;
+}
