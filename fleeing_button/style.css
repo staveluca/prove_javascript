@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    border: 1px solid #ccc;
+    width: 1000px;
+    height: 600px;
+    position: relative;
+}
+
+#button {
+    background-color: rgb(42, 99, 153);
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 10px;
+    width: 150px;
+    height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 10px rgb(195, 195, 195);
+    position: absolute;
+}
