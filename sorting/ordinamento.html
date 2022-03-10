@@ -1,0 +1,78 @@
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  referrerpolicy="no-referrer"
+  ;
+></script>
+
+<!DOCTYPE html>
+<html>
+  <head lang="it">
+    <title>Ordoinamento Array</title>
+    <meta charset="utf-8" />
+    <link href="stile.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <h1>ORDINAMENTO DI UN ARRAY</h1>
+      
+      <fieldset>
+          <legend class="lunghezza"></legend>
+          <div class="creazione">
+            <div class="crea">CREA ARRAY</div>
+            <div class="arrayD"></div>
+          </div>
+    
+          <div class="ordinamento">
+            <div class="ordina">ORDINA ARRAY</div>
+            <div class="arrayO"></div>
+          </div>
+      </fieldset>
+      
+
+      
+  </body>
+</html>
+
+<script>
+    //creazione array iniziale (lunghezza causale, composto da numeri causali)
+    $(".crea").on("mousedown", function(){
+        $(".crea").addClass("green");
+        $(".arrayD").addClass("border");
+
+        var elenco = [];
+        var lunghezza = parseInt(Math.random() * 10);
+
+        for (var i = 0; i < lunghezza; i++) {
+            elenco.push(parseInt(Math.random() * 100));
+        }
+
+        $(".arrayD").html(elenco+",");
+        $(".lunghezza").html("L'array generato contiene <b>"+lunghezza+"</b> elementi");
+        
+        $(".ordina").on("mousedown", function(){
+            $(".ordina").addClass("green");
+            $(".arrayO").addClass("border");
+
+            //ordinamento dell'array iniziale
+            //variabile scambi avvenuti (inizializzata a 1 per eseguire almeno 1 volta il ciclo)
+            var nScambi = 1;
+
+            //lo effettua finchè la condizione è vera
+            while (nScambi > 0) {
+                //presumo di non dover fare scambi
+                nScambi = 0;
+
+                //numero di check da fare è -1 perchè conto le coppie
+                for (var i = 0; i < lunghezza - 1; i++) {
+                    if (elenco[i] > elenco[i + 1]) {
+                        var scambio = elenco[i + 1];
+                        elenco[i + 1] = elenco[i];
+                        elenco[i] = scambio;
+                        //aumento numero di scambi fatti in questa passata per rifare il ciclo
+                        nScambi++;
+                    }
+                }
+            }
+            $(".arrayO").html(elenco+",");
+        });
+    });
+</script>
