@@ -1,0 +1,58 @@
+#messaggio {
+    position: absolute;
+    top: 43%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 4rem;
+    display: none;
+}
+
+.vinci {
+    background-color: aquamarine;
+    color: cadetblue;
+    box-shadow: 1px 1px 20px 3px #30aa72;
+}
+
+.perdi {
+    background-color: rgb(255, 204, 127);
+    color: rgb(221, 104, 57);
+    box-shadow: 1px 1px 20px 3px #dd9b9f;
+}
+
+h1 {
+    text-align: center;
+}
+
+.cell {
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 8rem;
+}
+
+.cell:hover {
+    background-color: #ddd;
+}
+
+#tria {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#tria .grid {
+    width: 600px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.cell.h {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.cell.v {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Reverse Copy Input</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+        <h1>TRIA</h1>
+
+        <div id="tria">
+            <div class="grid">
+                <div class="cell r1 c1 d1"></div>
+                <div class="cell v r1 c2"></div>
+                <div class="cell r1 c3 d2"></div>
+                <div class="cell h r2 c1"></div>
+                <div class="cell h v r2 c2 d1 d2"></div>
+                <div class="cell h r2 c3"></div>
+                <div class="cell r3 c1 d2"></div>
+                <div class="cell v r3 c2"></div>
+                <div class="cell r3 c3 d1"></div>
+            </div>
+            <div id="messaggio"></div>
+        </div>
+    </body>
+
+    <script>
+        //al click della cella succede qualcosa...
+        $(".cell").on("click", function () {
+            //variabile che prende valore dell'oggeto dell'evente
+            let cella_cliccata = $(this);
+
+            //se la cella è vuota inserisco O
+            if ($(cella_cliccata).html() == "") {
+                $(cella_cliccata).html("O");
+            }
+
+            //se non sono vincitore, gioca il computer
+            if (!EsisteVincitore("O")) {
+                //genero una casella vuota a caso, se non è vuota continua a generare e inserisce X
+                let cella_generata = parseInt(Math.random() * 9);
+                while ($(".cell:eq(" + cella_generata + ")").html() != "") {
+                    cella_generata = parseInt(Math.random() * 9);
+                }
+
+                $(".cell:eq(" + cella_generata + ")").html("X");
+                EsisteVincitore("X");
+            }
+        });
+
+        //controllo dell'esistenza di un vincitore (p= giocatore X o O)
+        function EsisteVincitore(p) {
+            //vincitore inizialmente falso
+            let vincitore = false;
+            //combinazioni vincenti in base a righe, colonne, diagonali
+            let combinazioni = [
+                ".r1",
+                ".r2",
+                ".r3",
+                ".c1",
+                ".c2",
+                ".c3",
+                ".d1",
+                ".d2",
+            ];
+
+            //controllo ogni possibile combinazione, si vince quando una contiene p
+            combinazioni.forEach(function (e) {
+                if(
+                    $(e)[0].innerHTML == p &&
+                    $(e)[1].innerHTML == p &&
+                    $(e)[2].innerHTML == p
+                ){
+                    vincitore = true;
+
+                    //accendo il messaggio di vincita
+                    $("#messaggio").css("display", "block");
+                    if (p == "O") {
+                        $("#messaggio").addClass("vinci");
+                        $("#messaggio").html("Hai vinto!");
+                    } else {
+                        $("#messaggio").addClass("perdi");
+                        $("#messaggio").html("Hai perso!");
+                    }
+                }
+            });
+            return vincitore;
+        }
+
+    </script>
+</html>
