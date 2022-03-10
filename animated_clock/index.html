@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Animated Clock</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+        <h1>OROLOGIO ANIMATO</h1>
+
+        <div id="orologio">
+            <div>
+                <div id="ore" class="elementi">
+                    <div class="decine">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                    </div>
+                    <div class="unita">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                    </div>
+                </div>
+
+                <div id="minuti" class="elementi">
+                    <div class="decine">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                    </div>
+                    <div class="unita">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                    </div>
+                </div>
+
+                <div id="secondi" class="elementi">
+                    <div class="decine">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                    </div>
+                    <div class="unita">
+                        <div>0</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div id="start" class="pulsanti">
+                    <span>START</span>
+                </div>
+                <div id="stop" class="pulsanti">
+                    <span>STOP</span>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+    <script>
+        //variabile per gestione interval
+        let timer;
+        
+        //mostra ora corrente
+        AggioraOrologio();
+        
+        //al click di start parte orologio con ora corrente
+        $("#start").on("click", function () {
+            timer = setInterval(function () {
+                AggioraOrologio();
+            }, 1000);
+        });
+        
+        //al click di stop si stoppa l'orologio
+        $("#stop").on("click", function () {
+            clearInterval(timer);
+        });
+        
+        //funzione per aggiornare numeri dell'orologio al cambio di secondi/minuti/ore
+        function AggioraOrologio() {
+            let d = new Date();
+            let ore = d.getHours();
+            let minuti = d.getMinutes();
+            let secondi = d.getSeconds();
+        
+            let secondi_u = secondi % 10;
+            let secondi_d = (secondi - secondi_u) / 10;
+
+            let minuti_u = minuti % 10;
+            let minuti_d = (minuti - minuti_u) / 10;
+
+            let ore_u = ore % 10;
+            let ore_d = (ore - ore_u) / 10;
+
+            $("#secondi .unita").css("top", -185 * secondi_u + "px");
+            $("#secondi .decine").css("top", -185 * secondi_d + "px");
+
+            $("#minuti .unita").css("top", -185 * minuti_u + "px");
+            $("#minuti .decine").css("top", -185 * minuti_d + "px");
+
+            $("#ore .unita").css("top", -185 * ore_u + "px");
+            $("#ore .decine").css("top", -185 * ore_d + "px");
+        }
+        
+        //funzione per mettere lo 0 davanti a numeri minori di 10
+        function ZeroDavanti(n) {
+            if (n < 10) {
+                return "0" + n;
+            } else {
+                return n;
+            }
+        }
+    </script>
+</html>
