@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Animated Graphic</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+        <h1>GRAFICI ANIMATI</h1>
+
+        <div class="grafico"></div>
+    </body>
+
+    <script>
+        //al caricamento di tutto l'html si creano i grafici casuali
+        $(document).ready(function(){
+            setInterval(function(){
+                //genera numero casuale di colonne da 1 a 15 e le aggiunge al grafico
+                let colonne=Math.ceil(Math.random()*15);
+                $(".grafico").html("");
+
+                for(let i=0; i<colonne; i++){
+                    $(".grafico").append("<div class='colonna'><span>0</span></div>");
+                }
+
+                //per ogni colonna genera altezza e colore casuale e mostra valore di altezza
+                $(".colonna").each(function(){
+                    let altezza=Math.ceil(Math.random()*500);
+                    let colore=Math.ceil(Math.random()*255);
+
+                    $(this).height(altezza);
+                    $("span", this).text(altezza);
+                    $(this).css("background-color", "hsl(" + colore + ",50%,50%)");
+                });
+            }, 2000);
+        });
+    </script>
+</html>

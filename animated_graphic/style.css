@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin: 0px auto;
+}
+
+.grafico {
+    margin: 50px;
+    width: 500px;
+    height: 500px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+    
+    border-bottom: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+}
+
+.colonna {
+    height: 10px;
+    width: 100%;
+    transition: height 2s;
+}
+
+.colonna span {
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: -20px;
+    width: 100%;
+    display: inline-block;
+}
