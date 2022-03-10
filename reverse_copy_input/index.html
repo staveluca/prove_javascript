@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Reverse Copy Input</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+        <h1>INSERISCI UN TESTO:</h1>
+        <input type="text" placeholder="Input ..."/>
+        <div></div>
+    </body>
+
+    <script>
+        //variabile per copia del valore inizialmente vuota
+        var copia = "";
+        //all'evento keyup genera la copia al contrario
+        $("input").on("keyup", function(event){
+            let copia = "";
+            for(let i = 0; i < $("input").val().length; i++){
+                let ultima= $("input").val()[i];
+                copia=ultima+copia;
+            }
+            $("div").html(copia);
+        });
+    </script>
+</html>
