@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Create Animated Mosaic</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+    </body>
+
+    <script>
+        //variabile per timer
+        var c;
+
+        //eseguibile quando il documento è "caricato"
+        $(document).ready(function(){
+            //all'evento keyup sul body si stoppa il timer
+            $("body").on("keyup",function(){
+                clearInterval(c);
+            })
+
+            //variabile per generare random da 10px a 30px per dimensione di una cella
+            let dimensione=Math.ceil(Math.random()*30)+10;
+
+            //area calcolata in base ad altezza e larghezza schermo, numero celle in base ad area e dimensione di una cella
+            let area=$(window).width() * $(window).height();
+            let numero=Math.ceil(area/(dimensione*dimensione));
+
+            //ciclo per inserire celle con dimensioni generate
+            for(let i=0; i<numero; i++){
+                $("body").append("<div></div>")
+            }
+            $("div").width(dimensione);
+            $("div").height(dimensione);
+
+
+
+            c=setInterval(function(){
+                //esegue finchè ci sono celle non colorate
+                if($(".colorata").length<dimensione){
+                    //variabile per generare cella da riempire casuale
+                    let generata=Math.ceil(Math.random()*numero);
+
+                    //ciclo per generare celle casuali finchè non ne trova una non colorata
+                    while($("div:eq("+generata+")").hasClass("colorata")){
+                        generata=Math.ceil(Math.random()+numero);
+                    }
+
+                    //aggiunta classe "colorata" per evitare ripetizioni
+                    $("div:eq("+generata+")").addClass("colorata");
+
+                    //generazione variabili casuali per colore
+                    let colore=Math.ceil(Math.random()*255);
+                    let saturazione=Math.ceil(Math.random()*100);
+                    let lucentezza=Math.ceil(Math.random()*100);
+
+                    //applicazione variabili di colore al background della cella tramite hsl
+                    $("div:eq("+generata+")").css(
+                        "background-color",
+                        "hsl(" + colore + "," + saturazione + "%," + lucentezza + "%)"
+                    );
+                }else{
+                    //altrimenti stop del timer
+                    clearInterval(c);
+                }
+            }, 50);
+        });
+    </script>
+</html>
