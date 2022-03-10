@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin: 0;
+}
+
+input{
+    background-color: gainsboro;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+div{
+    font-size: 24px;
+    font-weight: 900;
+    background-color: ghostwhite;
+    margin: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 5px 5px;
+}
